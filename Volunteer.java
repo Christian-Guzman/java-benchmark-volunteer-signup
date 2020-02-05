@@ -13,6 +13,7 @@ public class Volunteer implements Serializable {
     String childrenMinistry;
     String studentMinistry;
     String moreInfo;
+    boolean called;
 
     public Volunteer(String firstName, String lastName, String phone, String eMail, String worship, String welcome,
             String production, String communityGroups, String childrenMinistry, String studentMinistry,
@@ -28,5 +29,6 @@ public class Volunteer implements Serializable {
         this.childrenMinistry = childrenMinistry;
         this.studentMinistry = studentMinistry;
         this.moreInfo = moreInfo;
+        this.called = false;
     }
 }

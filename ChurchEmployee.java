@@ -29,56 +29,71 @@ public class ChurchEmployee {
     }
 
     private static void displayVolunteers(ArrayList<Volunteer> applications) {
-        System.out.println("-- You running about " + applications.size() + " application(s) --");
-        System.out
-                .println("------------------------------------------------------------------------------------------");
-        int i = 0;
-        ArrayList<String> interests = new ArrayList<String>();
-        for (Volunteer Volunteer : applications) {
-            if (Volunteer.worship.equals("yes")) {
-                interests.add("Worship");
-            }
-            if (Volunteer.welcome.equals("yes")) {
-                interests.add("Welcome");
-            }
-            if (Volunteer.production.equals("yes")) {
-                interests.add("Production");
-            }
-            if (Volunteer.communityGroups.equals("yes")) {
-                interests.add("Community Groups");
-            }
-            if (Volunteer.childrenMinistry.equals("yes")) {
-                interests.add("Children's Ministry");
-            }
-            if (Volunteer.studentMinistry.equals("yes")) {
-                interests.add("Student's Ministry");
-            }
-            if (Volunteer.moreInfo.equals("yes")) {
-                interests.add("More Info");
-            }
-            System.out.println("Application: " + i);
-            System.out.println("* " + Volunteer.firstName + " " + Volunteer.lastName + " - " + "[" + Volunteer.phone
-                    + "]" + " - " + "[" + Volunteer.eMail + "]");
-            System.out.println("- " + "Interests :" + interests);
+        if (applications.size() <= 0) {
+            System.out.println("No Applications have been submitted :(");
             System.out.println(
                     "------------------------------------------------------------------------------------------");
-            i++;
+        } else {
+            System.out.println("-- You running about " + applications.size() + " application(s) --");
+            System.out.println(
+                    "------------------------------------------------------------------------------------------");
+            int i = 0;
+            ArrayList<String> interests = new ArrayList<String>();
+            for (Volunteer Volunteer : applications) {
+                if (Volunteer.worship.equals("yes")) {
+                    interests.add("Worship");
+                }
+                if (Volunteer.welcome.equals("yes")) {
+                    interests.add("Welcome");
+                }
+                if (Volunteer.production.equals("yes")) {
+                    interests.add("Production");
+                }
+                if (Volunteer.communityGroups.equals("yes")) {
+                    interests.add("Community Groups");
+                }
+                if (Volunteer.childrenMinistry.equals("yes")) {
+                    interests.add("Children's Ministry");
+                }
+                if (Volunteer.studentMinistry.equals("yes")) {
+                    interests.add("Student's Ministry");
+                }
+                if (Volunteer.moreInfo.equals("yes")) {
+                    interests.add("More Info");
+                }
+                System.out.println("Application: " + i);
+                System.out.println("* " + Volunteer.firstName + " " + Volunteer.lastName + " - " + "[" + Volunteer.phone
+                        + "]" + " - " + "[" + Volunteer.eMail + "]");
+                System.out.println("- " + "Interests :" + interests);
+                System.out.println(
+                        "------------------------------------------------------------------------------------------");
+                i++;
+            }
+
         }
     }
 
     private static void tryToCall(ArrayList<Volunteer> applications) {
-
-        while (true) {
-            System.out.print("Would you like to call one of the applicants (Yes/No): ");
+        while (applications.size() > 0) {
+            System.out.println("Would you like to call one of the applicants (Yes/No): ");
             String callOrNo = in.nextLine().toLowerCase();
             if (callOrNo.equals("yes")) {
                 System.out.print("Which applicant number would you like to call: ");
                 Integer applicantID = Integer.parseInt(in.nextLine());
-                System.out.println("Calling " + applications.get(applicantID).firstName + " "
-                        + applications.get(applicantID).lastName);
-                System.out.print(
-                        "I'm sorry, but the person you are calling has a voice mailbox that has not been setup yet. Goodbye.");
-                break;
+
+                if (applications.get(applicantID).called == false) {
+                    System.out.println("Calling " + applications.get(applicantID).firstName + " "
+                            + applications.get(applicantID).lastName + " .......");
+                    System.out.println(
+                            "I'm sorry, but the person you are calling has a voice mailbox that has not been setup yet. Goodbye.");
+                    System.out.println(
+                            "------------------------------------------------------------------------------------------");
+                    applications.get(applicantID).called = true;
+                } else {
+                    System.out.println("You have already called.");
+                    System.out.println(
+                            "------------------------------------------------------------------------------------------");
+                }
             } else {
                 break;
             }
